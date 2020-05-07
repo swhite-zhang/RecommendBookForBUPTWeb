@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<script src="showdown-master/dist/showdown.min.js"></script>
+
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="../index.css" >
+</head>
+
+<body id="bg">
+
+<div id="header">
+<p><a class="a1" href="../index.html">北京邮电大学基于海量读者数据的图书推荐</a></p>
+</div>
+
+<div id="nav" style="border-color: rgba(234, 236, 238, 0.6);background-color:rgba(234, 236, 238, 0.6);">
+<p align="center"> <a href="recommendCollege.html">学院</a></p>
+<p align="center"><a href="recommendMonth.html">月份</a></p>
+<p align="center"><a href="arithmetic.html">算法</a></p>
+<p align="center"><a href="search.php">搜索</a></p>
+</div>
+
+<div id="section">
+<p id="output">test</p>
+<script>
+function load(name) {
+    let xhr = new XMLHttpRequest(),
+        okStatus = document.location.protocol === "file:" ? 0 : 200;
+    xhr.open('GET', name, false);
+    xhr.overrideMimeType("text/html;charset=utf-8");//默认为utf-8
+    xhr.send(null);
+    return xhr.status === okStatus ? xhr.responseText : null;
+}
+let text = load("arithmetic.md");  
+
+console.log(text);  //输出到浏览器控制器中
+var converter = new showdown.Converter(),
+    html = converter.makeHtml(text);
+document.getElementById('output').innerHTML = html;
+</script>
+</p>
+</div>
+
+</body>
+</html>
